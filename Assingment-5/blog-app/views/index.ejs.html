@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Manager</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">B</div>
+        <h2 class="title">My Blog Posts</h2>
+      </div>
+      <div class="header-actions">
+        <a href="/create" class="btn primary">+ New Post</a>
+      </div>
+    </header>
+
+    <% if (posts.length === 0) { %>
+      <div class="card empty">No posts yet. Create one!</div>
+    <% } else { %>
+      <ul class="post-list">
+        <% posts.forEach(post => { %>
+          <li class="post-item">
+            <div class="post-meta">
+              <h3 class="post-title"><%= post.title %></h3>
+              <span class="post-date"><%= post.createdAt.toDateString() %></span>
+            </div>
+            <p class="post-body"><%= post.content.substring(0, 150) %>...</p>
+            <div class="post-actions">
+              <a href="/edit/<%= post._id %>" class="btn">Edit</a>
+              <form action="/delete/<%= post._id %>" method="POST" style="display:inline;">
+                <button class="btn danger" type="submit">Delete</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <footer class="footer">
+      <p>Made with ❤️ using Node.js + Express + MongoDB</p>
+    </footer>
+  </div>
+</body>
+</html>
