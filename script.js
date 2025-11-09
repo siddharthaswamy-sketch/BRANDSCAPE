@@ -1,3 +1,5 @@
+// Base URL for backend API
+const API_URL = "https://brandscape-backend-zk2o.onrender.com/api";
 
 //currently not used
 // Donut Chart 
