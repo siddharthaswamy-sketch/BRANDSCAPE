@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  background: #fff;
+  padding: 2rem;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.title {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.task-input {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.task-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.task-input button {
+  padding: 10px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.task-input button:hover {
+  background-color: #45a049;
+}
+
+.task-list {
+  margin-top: 1.5rem;
+}
+
+.task-item {
+  background: #f8f8f8;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-item button {
+  background: #ff5c5c;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.task-item button:hover {
+  background: #e04b4b;
+}
+
+.empty {
+  color: #555;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  .task-input {
+    flex-direction: column;
+  }
+  .task-input input,
+  .task-input button {
+    width: 100%;
+  }
+}

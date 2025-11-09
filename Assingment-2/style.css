@@ -1,0 +1,137 @@
+/* ---------- Global Styles ---------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* ---------- Container ---------- */
+form, .dom-section {
+  background-color: #ffffff;
+  width: 380px;
+  margin: 50px auto;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Heading ---------- */
+h2 {
+  text-align: center;
+  color: #0066cc;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- Labels and Inputs ---------- */
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.4);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background: #0066cc;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #004c99;
+}
+
+/* ---------- Message ---------- */
+#message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+/* ---------- Cookie Button ---------- */
+#saveCookieButton {
+  display: block;
+  width: 380px;
+  margin: 10px auto;
+  background: #00a86b;
+}
+
+#saveCookieButton:hover {
+  background: #007a4d;
+}
+
+/* ---------- DOM Manipulation Section ---------- */
+hr {
+  width: 380px;
+  margin: 40px auto;
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.dom-section {
+  text-align: center;
+}
+
+#domText {
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+#demoImg {
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+#demoImg:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- DOM Buttons ---------- */
+#btnChangeText,
+#btnChangeImage,
+#btnAddNode,
+#btnRemoveNode {
+  width: auto;
+  padding: 8px 14px;
+  margin: 5px;
+  font-size: 14px;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+}
+
+#btnChangeText:hover,
+#btnChangeImage:hover,
+#btnAddNode:hover,
+#btnRemoveNode:hover {
+  background: #0056b3;
+}
