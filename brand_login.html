@@ -31,15 +31,12 @@
     .left-content { flex: 1; max-width: 500px; }
     .logo-container { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
     .logo { width: 70px; height: 70px; background: linear-gradient(135deg, #8c52ff, #b388ff); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; box-shadow: 0 10px 30px rgba(140, 82, 255, 0.3); }
-    .brand-name { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #8c52ff, #5e35b1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .welcome-title { font-size: 3rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
     .welcome-subtitle { font-size: 1.2rem; color: #666; line-height: 1.6; }
     .login-card { background: white; padding: 50px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1); width: 450px; transition: all 0.3s ease; }
     .login-card:hover { box-shadow: 0 20px 60px rgba(140, 82, 255, 0.15); }
     .login-header { text-align: center; margin-bottom: 35px; }
     .login-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #8c52ff, #b388ff); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(140, 82, 255, 0.3); }
-    .login-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
-    .form-group { margin-bottom: 25px; }
     .btn-custom { background: linear-gradient(135deg, #8c52ff, #7a45e6); color: white; border: none; border-radius: 12px; padding: 14px; width: 100%; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(140, 82, 255, 0.3); }
     .btn-custom:hover:not(:disabled) { background: linear-gradient(135deg, #7a45e6, #6838cc); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(140, 82, 255, 0.4); }
   </style>
@@ -85,25 +82,18 @@
 
             <button type="submit" class="btn btn-custom mb-3" id="loginBtn">
               <span id="loginText"><i class="fa-solid fa-right-to-bracket me-2"></i>Sign In</span>
-              <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
             </button>
 
-            <!-- ✅ Dummy login button -->
             <button type="button" class="btn btn-outline-secondary w-100" id="dummyLogin">
               <i class="fa-solid fa-vial me-2"></i>Use Dummy Login (test@brand.com)
             </button>
           </form>
-
-          <div class="divider"><span>or</span></div>
-          <div class="register-link">New to BrandScape? <a href="brand_signup.html">Register your brand</a></div>
         </div>
       </div>
     </div>
   </section>
 
   <script>
-    const API_URL = 'https://brandscape-backend-zk2o.onrender.com/api';
-
     function showAlert(message, type = 'danger') {
       const alertHTML = `
         <div class="alert alert-${type} alert-dismissible fade show" role="alert">
@@ -113,55 +103,32 @@
       document.getElementById('alert-container').innerHTML = alertHTML;
     }
 
-    async function handleLogin(email, password) {
-      const loginBtn = document.getElementById('loginBtn');
-      const loginText = document.getElementById('loginText');
-      const loginSpinner = document.getElementById('loginSpinner');
-
-      loginBtn.disabled = true;
-      loginText.classList.add('d-none');
-      loginSpinner.classList.remove('d-none');
-
-      try {
-        const res = await fetch(`${API_URL}/auth/brand/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-
-        if (res.ok) {
-          localStorage.setItem('authToken', data.token);
-          localStorage.setItem('userData', JSON.stringify(data.user));
-          showAlert('✅ Login successful! Redirecting...', 'success');
-          setTimeout(() => window.location.href = 'index.html', 1000);
-        } else {
-          showAlert(data.message || 'Invalid credentials.');
-        }
-      } catch (err) {
-        console.error('Login error:', err);
-        showAlert('⚠️ Network error — please check backend connection.');
-      } finally {
-        loginBtn.disabled = false;
-        loginText.classList.remove('d-none');
-        loginSpinner.classList.add('d-none');
-      }
-    }
-
-    document.getElementById('loginForm').addEventListener('submit', e => {
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      handleLogin(
-        document.getElementById('email').value,
-        document.getElementById('password').value
-      );
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Dummy credentials
+      if (email === 'test@brand.com' && password === '123456') {
+        const userData = {
+          email,
+          username: 'TestBrand',
+          name: 'Demo Brand',
+          userType: 'brand'
+        };
+        localStorage.setItem('authToken', 'dummy_token_123');
+        localStorage.setItem('userData', JSON.stringify(userData));
+        showAlert('✅ Dummy login successful! Redirecting...', 'success');
+        setTimeout(() => (window.location.href = 'index.html'), 1000);
+      } else {
+        showAlert('Invalid credentials. Use test@brand.com / 123456');
+      }
     });
 
-    // Dummy login click event
     document.getElementById('dummyLogin').addEventListener('click', () => {
       document.getElementById('email').value = 'test@brand.com';
       document.getElementById('password').value = '123456';
-      showAlert('🔍 Using dummy credentials...', 'info');
-      handleLogin('test@brand.com', '123456');
+      showAlert('💡 Using dummy credentials (test@brand.com / 123456)', 'info');
     });
   </script>
 
